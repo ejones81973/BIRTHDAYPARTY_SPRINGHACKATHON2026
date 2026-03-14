@@ -175,6 +175,7 @@ Score each section against its specific PITCH criterion:
 [T] Tell     — Is there proof? Is the transformation story compelling?
 [C] Clarify  — Are there ≥3 quantified differentiators with real numbers?
 [H] Help     — Is the ask specific with use-of-funds and a milestone?
+[H] Heart    - How much does this mean to the creator? Emotional investiment?
 
 Scoring rubric:
 90-100 Exceptional, investor-ready  |  75-89 Strong, minor gaps
@@ -195,7 +196,8 @@ Respond with valid JSON only — no markdown fences, no text outside the object.
     "idea":    { "score": <0-100>, "comment": "<one specific actionable sentence>" },
     "tell":    { "score": <0-100>, "comment": "<one specific actionable sentence>" },
     "clarify": { "score": <0-100>, "comment": "<one specific actionable sentence>" },
-    "help":    { "score": <0-100>, "comment": "<one specific actionable sentence>" }
+    "help":    { "score": <0-100>, "comment": "<one specific actionable sentence>" },
+    "heart":   { "score": <0-100>, "comment": "<one specific actionable sentence>" },
   },
   "strengths":    ["<strength quoting actual section content>", "<strength>"],
   "improvements": ["<improvement with concrete example of what good looks like>", "<improvement>", "<improvement>"]
@@ -209,7 +211,7 @@ Respond with valid JSON only — no markdown fences, no text outside the object.
       score: 0, grade: "N/A",
       verdict: "Analysis failed — please try again.",
       breakdown: Object.fromEntries(
-        ["premise", "idea", "tell", "clarify", "help"].map((k) => [
+        ["premise", "idea", "tell", "clarify", "help", "heart"].map((k) => [
           k, { score: 0, comment: "Could not analyze." },
         ])
       ),
@@ -333,6 +335,7 @@ Score it against all five PITCH criteria:
 [T] Transformation — is there proof and a clear solution bridge?
 [C] Connection — is it tailored to a specific audience?
 [H] Help — is there a clear, specific, low-friction ask?
+[H] Heart - what is the emotional investiment towards their idea?
 Respond with valid JSON only — no markdown fences.`;
 
   const model = getCoachModel(extraCtx);
