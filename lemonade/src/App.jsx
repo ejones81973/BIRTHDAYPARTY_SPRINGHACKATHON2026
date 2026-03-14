@@ -452,7 +452,6 @@ function CreatorStudio({profile,sessionId,initData,onBack,onSave}){
       role: m.role === "ai" ? "model" : "user",
       parts: [{ text: m.text }],
     }));
-  console.log("AI got: ", t);
   setInput("");
   addMsg({ role: "user", type: "msg", text: t });
   setAiLoading(true);
@@ -470,15 +469,29 @@ function CreatorStudio({profile,sessionId,initData,onBack,onSave}){
   }
 };
   
-  const runAnalysis=async(fromChat=false)=>{
-    if(!fromChat)addMsg({role:"user",type:"msg",text:"Analyze my full pitch."});
-    setAiLoading(true);
-    try{
-      const r=await ai_fullAnalysis(sections,profile);
-      setAnalysis(r); setPanel("analysis");
-      addMsg({role:"ai",type:"analysis",analysis:r});
-    }finally{setAiLoading(false);}
-  };
+const runAnalysis = async (fromChat = false) => {
+  setAiLoading(true);
+  try {
+    // Format the history just like you did in the 'send' function
+    const historyForAI = msgs
+      .filter(m => m.id !== "w0" && m.type === "msg")
+      .map(m => ({
+        role: m.role === "ai" ? "model" : "user",
+        parts: [{ text: m.text }],
+      }));
+
+    // Pass the 3rd argument!
+    const r = await ai_fullAnalysis(sections, profile, historyForAI);
+    
+    setAnalysis(r);
+    setPanel("analysis");
+    addMsg({ role: "ai", type: "analysis", analysis: r });
+  } catch (err) {
+    console.error("Analysis Error:", err);
+  } finally {
+    setAiLoading(false);
+  }
+};
  
   const acceptDraft=(key,draft)=>{
     setSections(s=>({...s,[key]:draft}));
