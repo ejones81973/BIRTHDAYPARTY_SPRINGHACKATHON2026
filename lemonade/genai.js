@@ -30,7 +30,7 @@ export async function ai_chat(userText, profile, sections, history = []) {
     ${SYSTEM_INSTRUCTIONS}
   `;
   
-  const model = getCoachModel(); // Your existing helper
+  const model = getCoachModel(identityHeader); // Your existing helper
 
   // 1. Initialize a chat session with the previous history
   const chat = model.startChat({
@@ -44,7 +44,6 @@ export async function ai_chat(userText, profile, sections, history = []) {
   const result = await chat.sendMessage(userText);
   const response = await result.response;
   
-  console.log(response.text()); 
   return { type: "message", text: response.text() };
 }
 
