@@ -55,6 +55,7 @@ function buildSectionsContext(sections) {
     tell:    "Tell    [T] — Transformation / Proof",
     clarify: "Clarify [C] — Connection / Quantified Value",
     help:    "Help    [H] — Call to Action / Ask",
+    heart:   "Heart   [<3] - Purpose / Why / Emotional Attachment"
   };
 
   const lines = KEYS.map((k) => {
