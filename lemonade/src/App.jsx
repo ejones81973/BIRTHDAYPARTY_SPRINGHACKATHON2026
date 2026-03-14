@@ -7,7 +7,6 @@ import {
   ai_deliveryAnalysis, 
   ai_scoreCompare 
 } from "../genai.js";
-console.log("imported");
  
 // ══════════════════════════════════════════════════════════════════════════════
 //  THEME
@@ -453,7 +452,7 @@ function CreatorStudio({profile,sessionId,initData,onBack,onSave}){
       role: m.role === "ai" ? "model" : "user",
       parts: [{ text: m.text }],
     }));
-
+  console.log("AI got: ", t);
   setInput("");
   addMsg({ role: "user", type: "msg", text: t });
   setAiLoading(true);
@@ -470,7 +469,7 @@ function CreatorStudio({profile,sessionId,initData,onBack,onSave}){
     setAiLoading(false);
   }
 };
- 
+  
   const runAnalysis=async(fromChat=false)=>{
     if(!fromChat)addMsg({role:"user",type:"msg",text:"Analyze my full pitch."});
     setAiLoading(true);
