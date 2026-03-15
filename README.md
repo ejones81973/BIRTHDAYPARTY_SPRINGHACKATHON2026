@@ -4,7 +4,7 @@
 
 **Lemonade** is an AI-driven web application that empowers creators to build high-impact pitch decks and assists reviewers in evaluating them through an objective, data-backed framework.
 
-#### [visit lemonade](https://lemonadepitch.vercel.app)  
+#### [visit lemonade](https://lemonadepitcher.vercel.app)  
 ---
 
 ## 🚀 Project Overview
